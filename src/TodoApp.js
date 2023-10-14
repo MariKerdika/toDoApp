@@ -49,6 +49,7 @@ const TodoApp = () => {
       ...todoes,
     ];
     setTodoes(newItems);
+    setValue("");
   }
   return (
     <div>
