@@ -26,6 +26,7 @@ const ITEMS = [
 
 const TodoApp = () => {
   const [todoes, setTodoes] = useState(ITEMS);
+  const [value, setValue] = useState("");
 
   function onItemChange(clickedItem) {
     const newValue = todoes.map((item) => {
@@ -36,8 +37,30 @@ const TodoApp = () => {
     });
     setTodoes(newValue);
   }
+  function onnAddNewItem(e) {
+    e.preventDefault();
+
+    const newItems = [
+      {
+        id: Date.now(),
+        title: value,
+        complated: false,
+      },
+      ...todoes,
+    ];
+    setTodoes(newItems);
+  }
   return (
     <div>
+      <div style={{ padding: "20px" }}>
+        <form action="" onSubmit={onnAddNewItem}>
+          <input
+            type="text"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+          />
+        </form>
+      </div>
       <ul>
         {todoes.map((item) => (
           <li
