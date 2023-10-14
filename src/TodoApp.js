@@ -31,7 +31,14 @@ const TodoApp = () => {
 
   useEffect(() => {
     inputRef.current.focus();
-  });
+  }, []);
+
+  useEffect(() => {
+    const items = localStorage.getItem("items");
+    if (items) {
+      setTodoes(JSON.parse(localStorage.getItem("items")));
+    }
+  }, []);
 
   function onItemChange(clickedItem) {
     const newValue = todoes.map((item) => {
@@ -54,6 +61,7 @@ const TodoApp = () => {
       ...todoes,
     ];
     setTodoes(newItems);
+    localStorage.setItem("items", JSON.stringify(newItems));
     setValue("");
   }
   return (
