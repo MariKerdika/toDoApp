@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 
 const ITEMS = [
@@ -27,6 +27,11 @@ const ITEMS = [
 const TodoApp = () => {
   const [todoes, setTodoes] = useState(ITEMS);
   const [value, setValue] = useState("");
+  const inputRef = useRef();
+
+  useEffect(() => {
+    inputRef.current.focus();
+  });
 
   function onItemChange(clickedItem) {
     const newValue = todoes.map((item) => {
@@ -59,6 +64,7 @@ const TodoApp = () => {
             type="text"
             value={value}
             onChange={(e) => setValue(e.target.value)}
+            ref={inputRef}
           />
         </form>
       </div>
