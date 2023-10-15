@@ -69,6 +69,9 @@ const TodoApp = () => {
     setTodoes(newItems);
     localStorage.setItem("items", JSON.stringify(newItems));
   }
+  const totalItem = todoes.length;
+  const itemsComplated = todoes.filter((item) => item.complated).length;
+  const itemsNotComplated = todoes.filter((item) => !item.complated).length;
   return (
     <div>
       <div style={{ padding: "20px" }}>
@@ -97,6 +100,8 @@ const TodoApp = () => {
           </li>
         ))}
       </ul>
+      სულ: {totalItem}, დასრულებული: {itemsComplated}, დაუსრულებელი:
+      {itemsNotComplated}
     </div>
   );
 };
