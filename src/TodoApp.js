@@ -64,6 +64,11 @@ const TodoApp = () => {
     localStorage.setItem("items", JSON.stringify(newItems));
     setValue("");
   }
+  function onItemDelete(itemId) {
+    const newItems = todoes.filter((item) => item.id !== itemId);
+    setTodoes(newItems);
+    localStorage.setItem("items", JSON.stringify(newItems));
+  }
   return (
     <div>
       <div style={{ padding: "20px" }}>
@@ -88,7 +93,7 @@ const TodoApp = () => {
               onChange={() => onItemChange(item)}
             />
             {item.title}
-            <button>delete</button>
+            <button onClick={() => onItemDelete(item.id)}>delete</button>
           </li>
         ))}
       </ul>
